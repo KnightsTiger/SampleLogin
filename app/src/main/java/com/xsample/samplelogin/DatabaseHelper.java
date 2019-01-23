@@ -46,4 +46,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(cursor.getCount()>0) return true;
         else return false;
     }
+
+
+    public boolean updatevalues(String email,String password){
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("password",password);
+        db.update("user",contentValues,"email=?",new String[]{email});
+        return true;
+    }
 }
